@@ -131,6 +131,15 @@ footer{padding:96px 0 120px;text-align:center}
 footer p.one{font-family:var(--serif);font-size:clamp(20px,3.6vw,28px);line-height:1.9}
 footer p.sub{margin-top:24px;color:var(--ink-2);font-size:14.5px}
 footer small{display:block;margin-top:48px;color:var(--ink-3);font-size:12px;letter-spacing:.15em}
+
+  .childnotes{border-top:1px solid var(--line,rgba(0,0,0,.12));margin-top:10px}
+  .childnotes a{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:baseline;
+    padding:20px 4px;border-bottom:1px solid var(--line,rgba(0,0,0,.12));text-decoration:none}
+  .childnotes .idx{font-family:"Noto Serif JP",serif;opacity:.45;font-size:.9rem}
+  .childnotes .cat{display:block;font-size:.66rem;letter-spacing:.2em;opacity:.5}
+  .childnotes .ttl{display:block;font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.12rem}
+  .childnotes .desc{display:block;font-size:.88rem;opacity:.72;line-height:1.8;margin-top:4px}
+  .childnotes .arrow{opacity:.4}
 </style>
 </head>
 <body>
@@ -230,7 +239,7 @@ footer small{display:block;margin-top:48px;color:var(--ink-3);font-size:12px;let
     <p>将来は働く時間を減らし、週3日ほどの勤務で今と同じくらいの暮らしを保ちたい。そのために資産形成も考える。</p>
     <blockquote>経済的な安心は大切。<br>でも、お金を増やすことが人生の目的にすり替わることは望まない。</blockquote>
     <p class="muted">働く時間を減らすことは手段にすぎない。最終的に実現したいのは、自由な時間の中で、自分が大切にしたいことを楽しめる状態だ。</p>
-    <p class="muted">働くことへの考え方は<a href="../way-of-working/">働き方</a>に、お金との付き合い方は<a href="../money/">お金</a>にまとめている。</p>
+    <p class="muted">働くことへの考え方は<a href="../way-of-working/">働き方</a>に、お金との付き合い方は<a href="../money/">おかね</a>にまとめている。</p>
   </div>
 </section>
 <div class="part"><div class="wrap"><p>PART II</p><h2>どう決め、どう関わるか</h2></div></div>
@@ -428,11 +437,30 @@ footer small{display:block;margin-top:48px;color:var(--ink-3);font-size:12px;let
   </div>
 </section>
 
+<section id="notes">
+  <div class="wrap">
+    <h2>この中のノート</h2>
+    <p class="muted" style="margin-bottom:8px">向かう先を決めたあと、考えることと働くことについて。</p>
+    <nav class="childnotes">
+      <a href="../thinking/">
+        <span class="idx">01</span>
+        <span><span class="cat">THINKING</span><span class="ttl">考え方</span><span class="desc">考えることは、才能ではなく順番。考え方のくせ、考える手順、三つの問い、解像度を上げる。</span></span>
+        <span class="arrow">→</span>
+      </a>
+      <a href="../way-of-working/">
+        <span class="idx">02</span>
+        <span><span class="cat">WAY OF WORKING</span><span class="ttl">働き方</span><span class="desc">仕事は人生の中心ではなく、暮らしの一部。振り回されず、自分の言葉で、楽しんで働くための考え方。</span></span>
+        <span class="arrow">→</span>
+      </a>
+    </nav>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <p class="one">自分の意思で自由に生き、<br>好奇心に従って世界を知り、<br>体験と感動と、人との関わりを楽しむ。</p>
     <p class="sub">完璧な人生でも、お金を最大化する人生でもなく、<br>望む人生を自分で選べることを大切にする。</p>
-    <p class="related">あわせて読む：<a href="../way-of-working/">働き方</a> ・ <a href="../joy/">楽しみ方</a> ・ <a href="../health-habits/">健康と習慣</a> ・ <a href="../about/">m-note について</a> ・ <a href="../philosophy/">哲学</a></p>
+    <p class="related">あわせて読む：<a href="../way-of-working/">働き方</a> ・ <a href="../joy/">これから</a> ・ <a href="../health-habits/">健康</a> ・ <a href="../about/">m-note について</a> ・ <a href="../philosophy/">哲学</a></p>
     <a class="back" href="../">← m-note トップ</a>
     <p class="disc">専門家ではない個人が、自分の生き方を考えるために作った個人的なまとめです。内容の正確性を保証するものではありません。</p>
     <small>WAY OF LIFE — 2026</small>
