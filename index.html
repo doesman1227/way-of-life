@@ -144,6 +144,15 @@ footer small{display:block;margin-top:48px;color:var(--ink-3);font-size:12px;let
   .todo{margin:16px 0 0;padding:16px 18px;border:1px dashed var(--line);border-radius:3px;
     color:var(--ink-3);font-size:14px;line-height:1.85}
   .todo b{display:block;font-size:11px;letter-spacing:.2em;color:var(--accent);margin-bottom:6px;font-weight:700}
+
+  .hung{margin-top:12px;font-size:13px}
+  .hung summary{cursor:pointer;color:var(--ink-2);list-style:none}
+  .hung summary::-webkit-details-marker{display:none}
+  .hung summary::before{content:"＋ ";color:var(--accent)}
+  .hung[open] summary::before{content:"− "}
+  .hung ul{margin:10px 0 0;padding-left:0;list-style:none}
+  .hung li{margin:5px 0;color:var(--ink-2);line-height:1.7}
+  .hung .hk{display:inline-block;min-width:4.5em;color:var(--accent);font-size:11.5px}
 </style>
 </head>
 <body>
@@ -429,6 +438,8 @@ footer small{display:block;margin-top:48px;color:var(--ink-3);font-size:12px;let
   };
   var ORD = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
 
+  var ALL = [];   // render() で全件を入れる。柱が byPillar で引く
+
   // kind ごとの 1 項目の markup（元の手書きと同じ形）
   var RENDER = {
     '終わりに': function (it, i) { return '<li><span>' + (ORD[i] || (i + 1)) + '</span>' + esc(it.title) + '</li>'; },
@@ -443,7 +454,14 @@ footer small{display:block;margin-top:48px;color:var(--ink-3);font-size:12px;let
         var tail = (j === last && it.ref) ? '→ <a href="' + esc(it.ref) + '">' + esc(it.ref_label) + '</a>' : '';
         return '<p>' + esc(t) + tail + '</p>';
       }).join('');
-      return '<div class="pillar"><div class="k">' + esc(it.key) + '</div><h3>' + esc(it.title) + '</h3>' + ps + '</div>';
+      var hung = Self.byPillar(ALL, it.key);
+      var detail = hung.length
+        ? '<details class="hung"><summary>この柱につながるもの ' + hung.length + '</summary><ul>' +
+          hung.map(function (h) {
+            return '<li><span class="hk">' + esc(h.kind) + '</span>' + esc(h.title) + '</li>';
+          }).join('') + '</ul></details>'
+        : '';
+      return '<div class="pillar"><div class="k">' + esc(it.key) + '</div><h3>' + esc(it.title) + '</h3>' + ps + detail + '</div>';
     },
     // memo の末尾の括弧は、データに文字として入っているものがある。ここでは足さない。
     '原則': function (it) {
@@ -472,6 +490,7 @@ footer small{display:block;margin-top:48px;color:var(--ink-3);font-size:12px;let
   function render(items) {
     var errors = Self.validateSelf(items);
     if (errors.length) { fail(errors[0]); return; }   // 黙って描かない
+    ALL = items;
     Array.prototype.forEach.call(document.querySelectorAll('[data-self]'), function (box) {
       var kind = box.getAttribute('data-self');
       var fn = RENDER[kind];
